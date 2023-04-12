@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cambiando color</title>
+  </head>
+  <body>
+    <h1>Cambiando color</h1>
+    <canvas height="480" width="600"></canvas>
+    <script>
+      const colors = ["blue", "red", "green"];
+      let currentColor = 0;
+      const canvas = document.querySelector("canvas");
+      const pointer = canvas.getContext("2d");
+      pointer.fillStyle = "grey";
+      pointer.fillRect(0, 0, 600, 480);
+
+      function dibujaCirculo(event) {
+        const x = event.pageX - canvas.offsetLeft;
+        const y = event.pageY - canvas.offsetTop;
+        pointer.fillStyle = colors[currentColor];
+        pointer.beginPath();
+        pointer.arc(x, y, 10, 0, 2 * 3.14);
+        pointer.fill();
+      }
+
+      canvas.onclick = cambiaColor;
+
+      function cambiaColor() {
+        if (currentColor === 0) {
+          currentColor++;
+        } else if (currentColor === 1) {
+          currentColor++;
+        } else if (currentColor === 2) {
+          currentColor = 0;
+        }
+      }
+      canvas.oncontextmenu = dibujaCirculo;
+    </script>
+  </body>
+</html>
